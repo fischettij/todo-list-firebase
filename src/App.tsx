@@ -1,15 +1,15 @@
-import React, { FC, useContext } from 'react';
-import SessionProvider from './context/SessionContext'
-import Routes from './Routes'
+import React, { FC } from 'react';
+import SessionProvider from './context/SessionContext';
+import Routes from './Routes';
 
-function App() {
+const App: FC = () => {
   return (
     <div className="App">
       <SessionProvider>
-        <Routes/>
+        <Routes />
       </SessionProvider>
     </div>
   );
-}
+};
 
 export default App;

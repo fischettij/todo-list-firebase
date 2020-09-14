@@ -1,21 +1,21 @@
-import React, {FC, createContext, useState} from 'react';
+import React, { FC, createContext, useState } from 'react';
 
 // Types
 type User = {
-  email: string,
-  name: string,
-  id: number,
-  token: string,
-}
+  email: string;
+  name: string;
+  id: number;
+  token: string;
+};
 
 type SessionContextValues = {
   state: {
-    isAuthenticated: boolean,
-    user: User,
-  },
+    isAuthenticated: boolean;
+    user: User;
+  };
   actions: {
     setUser: (user: User) => void;
-  }
+  };
 };
 
 // Constants
@@ -29,14 +29,14 @@ const EMPTY_USER = {
 export const SessionContext = createContext<SessionContextValues>({
   state: {
     isAuthenticated: false,
-    user: EMPTY_USER
+    user: EMPTY_USER,
   },
   actions: {
-    setUser: () => {}
-  }
+    setUser: () => {},
+  },
 });
 
-const SessionProvider: FC = ({children}) => {
+const SessionProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User>(EMPTY_USER);
 
   const isAuthenticated = true;
@@ -44,14 +44,12 @@ const SessionProvider: FC = ({children}) => {
   const state = {
     user,
     isAuthenticated,
-  }
+  };
 
   const actions = {
     setUser,
-  }
-  return (
-    <SessionContext.Provider value={{state, actions}} >{children}</SessionContext.Provider>
-  )
-}
+  };
+  return <SessionContext.Provider value={{ state, actions }}>{children}</SessionContext.Provider>;
+};
 
-export default SessionProvider
+export default SessionProvider;
