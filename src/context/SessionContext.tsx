@@ -1,7 +1,7 @@
-import React, { FC, createContext, useState } from 'react';
+import React, { FC, createContext, useState, useMemo } from 'react';
 
 // Types
-type User = {
+export type User = {
   email: string;
   name: string;
   id: number;
@@ -19,7 +19,7 @@ type SessionContextValues = {
 };
 
 // Constants
-const EMPTY_USER = {
+export const EMPTY_USER: User = {
   email: '',
   name: '',
   id: 0,
@@ -38,8 +38,7 @@ export const SessionContext = createContext<SessionContextValues>({
 
 const SessionProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User>(EMPTY_USER);
-
-  const isAuthenticated = true;
+  const isAuthenticated = useMemo(() => Boolean(user?.token), [user]);
 
   const state = {
     user,

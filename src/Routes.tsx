@@ -1,6 +1,8 @@
 import React, { FC, useContext } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { SessionContext } from './context/SessionContext';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 // Types
 type RouteProps = {
@@ -8,18 +10,9 @@ type RouteProps = {
 };
 
 // Constants
-const ROUTES = {
+export const ROUTES = {
   home: '/home',
   login: '/login',
-};
-
-// Components
-const Login = () => {
-  return <h1>Login</h1>;
-};
-
-const Home = () => {
-  return <h1>Home</h1>;
 };
 
 // Custom router
