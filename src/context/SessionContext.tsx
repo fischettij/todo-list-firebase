@@ -1,25 +1,25 @@
-import React, {FC, createContext, useState} from 'react';
+import React, { FC, createContext, useState, useMemo } from 'react';
 
 // Types
-type User = {
-  email: string,
-  name: string,
-  id: number,
-  token: string,
-}
+export type User = {
+  email: string;
+  name: string;
+  id: number;
+  token: string;
+};
 
 type SessionContextValues = {
   state: {
-    isAuthenticated: boolean,
-    user: User,
-  },
+    isAuthenticated: boolean;
+    user: User;
+  };
   actions: {
     setUser: (user: User) => void;
-  }
+  };
 };
 
 // Constants
-const EMPTY_USER = {
+export const EMPTY_USER: User = {
   email: '',
   name: '',
   id: 0,
@@ -29,29 +29,30 @@ const EMPTY_USER = {
 export const SessionContext = createContext<SessionContextValues>({
   state: {
     isAuthenticated: false,
-    user: EMPTY_USER
+    user: EMPTY_USER,
   },
   actions: {
-    setUser: () => {}
-  }
+    setUser: () => {},
+  },
 });
 
-const SessionProvider: FC = ({children}) => {
-  const [user, setUser] = useState<User>(EMPTY_USER);
+// Helpers
+const safelyGetObjectFromLocalStorage = (key: string) => JSON.parse(localStorage.getItem(key) || '{}');
 
-  const isAuthenticated = true;
+const SessionProvider: FC = ({ children }) => {
+  const storedUser = safelyGetObjectFromLocalStorage('user');
+  const [user, setUser] = useState<User>(storedUser);
+  const isAuthenticated = useMemo(() => Boolean(user?.token), [user]);
 
   const state = {
     user,
     isAuthenticated,
-  }
+  };
 
   const actions = {
     setUser,
-  }
-  return (
-    <SessionContext.Provider value={{state, actions}} >{children}</SessionContext.Provider>
-  )
-}
+  };
+  return <SessionContext.Provider value={{ state, actions }}>{children}</SessionContext.Provider>;
+};
 
-export default SessionProvider
+export default SessionProvider;
