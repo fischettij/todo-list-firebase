@@ -25,6 +25,7 @@ const useLogin = () => {
   const { push } = useHistory();
 
   const login = (values: LoginValues) => {
+    localStorage.setItem('user', JSON.stringify(values));
     setUser(LOGIN_DATA);
     push(ROUTES.home);
   };
@@ -39,6 +40,7 @@ const useLogout = () => {
   const { push } = useHistory();
 
   const logout = () => {
+    localStorage.removeItem('user');
     setUser(EMPTY_USER);
     push(ROUTES.home);
   };
