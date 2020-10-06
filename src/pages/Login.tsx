@@ -28,23 +28,15 @@ const Login: FC = () => {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          name="username"
-          placeholder="Username"
-          value={values.username}
-          onChange={handleChange}
-        ></input>
+        <label htmlFor="username">
+          Username
+          <input id="username" name="username" placeholder="Username" value={values.username} onChange={handleChange} />
+        </label>
 
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          placeholder="Password"
-          value={values.password}
-          onChange={handleChange}
-        ></input>
+        <label htmlFor="password">
+          Password
+          <input id="password" name="password" placeholder="Password" value={values.password} onChange={handleChange} />
+        </label>
 
         <button type="submit">LOGIN</button>
       </form>

@@ -1,12 +1,12 @@
 import React, { FC, useState, useMemo } from 'react';
 
-import { SessionContext } from './context';
 import { User } from 'lib/types';
+import { SessionContext } from './context';
 
 // Helpers
 const safelyGetObjectFromLocalStorage = (key: string) => JSON.parse(localStorage.getItem(key) || '{}');
 
-export const SessionProvider: FC = ({ children }) => {
+const SessionProvider: FC = ({ children }) => {
   const storedUser = safelyGetObjectFromLocalStorage('user');
   const [user, setUser] = useState<User>(storedUser);
   const isAuthenticated = useMemo(() => Boolean(user?.token), [user]);
@@ -21,3 +21,5 @@ export const SessionProvider: FC = ({ children }) => {
   };
   return <SessionContext.Provider value={{ state, actions }}>{children}</SessionContext.Provider>;
 };
+
+export default SessionProvider;

@@ -7,7 +7,9 @@ const Home: FC = () => {
   return (
     <div>
       <h1>Home</h1>
-      <button onClick={() => logout()}>LOGUOT</button>
+      <button type="button" onClick={() => logout()}>
+        LOGUOT
+      </button>
     </div>
   );
 };
