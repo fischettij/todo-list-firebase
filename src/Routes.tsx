@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { SessionContext } from './context/SessionContext';
+import { SessionContext } from 'lib/providers/SessionProvider/context';
 import Home from './pages/Home';
 import Login from './pages/Login';
 

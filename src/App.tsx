@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import SessionProvider from './context/SessionContext';
+import { SessionProvider } from 'lib/providers/SessionProvider/provider';
 import Routes from './Routes';
 
 const App: FC = () => {

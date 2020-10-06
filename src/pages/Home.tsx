@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useLogout } from '../hooks/SessionHooks';
+import { useLogout } from 'lib/hooks/useLogout';
 
 const Home: FC = () => {
   const { logout } = useLogout();

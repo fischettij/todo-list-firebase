@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useLogin, LoginValues } from '../hooks/SessionHooks';
+import { useLogin, LoginValues } from 'lib/hooks/useLogin';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 

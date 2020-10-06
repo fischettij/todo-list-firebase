@@ -1,7 +1,9 @@
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { SessionContext, User, EMPTY_USER } from '../context/SessionContext';
-import { ROUTES } from '../Routes';
+
+import { ROUTES } from 'Routes';
+import { SessionContext } from 'lib/providers/SessionProvider/context';
+import { User } from 'lib/types';
 
 // Mock constant user
 const LOGIN_DATA: User = {
@@ -18,7 +20,7 @@ export type LoginValues = {
   password: string;
 };
 
-const useLogin = () => {
+export const useLogin = () => {
   const { actions } = useContext(SessionContext);
   const { setUser } = actions;
 
@@ -32,20 +34,3 @@ const useLogin = () => {
 
   return { login };
 };
-
-const useLogout = () => {
-  const { actions } = useContext(SessionContext);
-  const { setUser } = actions;
-
-  const { push } = useHistory();
-
-  const logout = () => {
-    localStorage.removeItem('user');
-    setUser(EMPTY_USER);
-    push(ROUTES.home);
-  };
-
-  return { logout };
-};
-
-export { useLogin, useLogout };
